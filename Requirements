@@ -1,0 +1,22 @@
+Streamlit : Streamlit is an open-source Python framework that lets you turn data scripts into shareable web apps in minutes. It’s ideal for:
+              Dashboards
+              ML model demos
+              Data visualizations
+              Interactive tools like your Invoice Extractor
+
+Langchain : LangChain is an open-source Python and JavaScript framework that simplifies the development of LLM-based apps. It lets you connect models like GPT, Gemini, or Claude to external data sources, APIs, and tools—creating smart, dynamic workflows.
+
+
+PyPDF2 : PyPDF2 is a powerful and lightweight Python library for working with PDF files—perfect for tasks like reading, extracting, merging, and splitting PDFs. If you're building something like an invoice extractor, Roushan, PyPDF2 can help you parse structured PDFs before applying NLP or field extraction.
+
+
+Chromadb : ChromaDB is a blazing-fast, AI-native vector database designed for storing and retrieving embeddings—those high-dimensional numerical representations of text, images, or other data. If you're diving into LangChain, semantic search, or retrieval-augmented generation (RAG), ChromaDB is a go-to tool for managing your knowledge base efficiently.
+
+
+python-dotenv : python-dotenv is a super handy Python library that helps you manage environment variables—especially useful when you're working with sensitive data like API keys, database URLs, or secret tokens in projects like your invoice extractor.
+
+
+google-generativeai : Google Generative AI—especially through its Gemini models—is a cutting-edge suite of tools and APIs designed to help developers build intelligent, multimodal applications that generate text, code, images, and more. Since you're already exploring invoice extraction and LangChain, Roushan, this could be a powerful addition to your toolkit.
+
+
+
