@@ -1,1 +1,60 @@
+from dotenv import load_dotenv
+load_dotenv()
+import os
+import streamlit as st
+from PIL import Image
+import google.generativeai as genai
+
+# Configure Gemini
+genai.configure(api_key=os.getenv("API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+def get_gemini_response(user_input, image_data, user_prompt):
+    response = model.generate_content(
+        [
+            user_input,
+            image_data,
+            user_prompt
+        ]
+    )
+    return response.text
+
+def input_image_details(uploaded_file):
+    if uploaded_file is not None:
+        bytes_data = uploaded_file.getvalue()
+
+        image_path = {
+            "mime_type": uploaded_file.type,   # FIXED: use actual file type
+            "data": bytes_data
+        }
+        return image_path
+    else:
+        raise ValueError("No file uploaded")
+
+# Streamlit app
+st.set_page_config(page_title="Invoice Extractor")
+st.header("Invoice Extractor")
+
+user_input = st.text_input("Extra instructions (optional):", key="user_input")
+uploaded_file = st.file_uploader("Upload an invoice image", type=["png", "jpg", "jpeg"])
+
+if uploaded_file is not None:
+    image = Image.open(uploaded_file)
+    st.image(image, caption="Uploaded Invoice", use_column_width=True)
+
+submit = st.button("Submit")
+
+# Default prompt
+input_prompt = (
+    "Extract the following details from the invoice: "
+    "Invoice Number, Invoice Date, Due Date, Total Amount, "
+    "Vendor Name, Vendor Address, Customer Name, Customer Address. "
+    "Present the extracted information in a clear and organized format."
+)
+
+if submit and uploaded_file is not None:
+    image_data = input_image_details(uploaded_file)
+    response = get_gemini_response(user_input, image_data, input_prompt)
+    st.subheader("Extracted Invoice Data")
+    st.write(response)
 
